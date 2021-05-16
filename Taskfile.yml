@@ -1,16 +1,11 @@
 # https://taskfile.dev
 version: '3'
 tasks:
-  hi:
+  version:
+    desc: show java version
     cmds:
-      - echo 'Hi Task https://taskfile.dev !'
-    silent: true
-  
-  enable-os:
-    status:
-    - test -f Taskfile_{{OS}}.yml
-    cmds:
-    - touch Taskfile_{{OS}}.yml
+    - java -version
+    # - asdf list java
 
-#includes:
-#  os: ./Taskfile_{{OS}}.yml
+includes:
+  os: ./Taskfile_{{OS}}.yml

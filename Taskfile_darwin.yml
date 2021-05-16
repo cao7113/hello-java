@@ -1,0 +1,32 @@
+# https://taskfile.dev
+version: '3'
+tasks:
+  install-java:
+    desc: install java by https://asdf-vm.com/#/
+    status:
+    - java -version
+    cmds:
+    - asdf plugin add java || true
+    - asdf install java adoptopenjdk-11.0.10+9
+    - asdf list java
+
+  install-java-by-sdkman:
+    desc: install java by https://sdkman.io/
+    status:
+    - java -version
+    cmds:
+    - sdkman install java
+    - java -version
+
+  install-adoptopenjdk:
+    desc: install java by https://mkyong.com/java/how-to-install-java-on-mac-osx/#homebrew-install-latest-java-on-macos
+    status:
+    - java -version
+    cmds:
+    # https://github.com/AdoptOpenJDK/homebrew-openjdk 
+    - brew install --cask adoptopenjdk
+    # - brew tap AdoptOpenJDK/openjdk
+    # - brew install --cask <version>
+    # The adoptopenjdk formula creates the JDK home directly in the /Library/Java/JavaVirtualMachines/.
+    # Since the JDK home is already in /Library/Java/JavaVirtualMachines/, we do not need to create any symbolic link, just export $PATH and point it to the correct adoptopenjdk-14.jdk.
+    - ls -lsa /Library/Java/JavaVirtualMachines/
